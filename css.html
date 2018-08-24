@@ -1,0 +1,91 @@
+<!-- BFC块级格式化上下文 overflow:hidden;overflow:auto;float:(不是none即可)；display:inline-box;display:table-cell;display:table-   position不为static或relative-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>CSS</title>
+	<style type="text/css">
+		html *{
+			margin:0;
+			padding:0;
+		}
+	</style>
+</head>
+<body>
+	<section id="sec">
+		<style type="text/css">
+			#sec{
+				background: blue;
+				overflow: hidden;
+			}
+			.child{
+				height: 100px;
+				margin-top:10px;
+				background: pink;
+			}
+		</style>
+		<article class="child"></article>
+	</section>
+	<section id="margin">
+		<style type="text/css">
+			#margin{
+				background: red;
+				overflow: hidden;
+			}
+			#margin p{
+				/*id为margin中的所有p，#margin>p是以ID为margin为父元素的p*/
+				margin-top: 5px;
+				margin-bottom: 25px;
+				background: gray;
+			}
+			
+		</style>
+			<p>1</p>
+			<p>2</p>
+			<div style="overflow:hidden">
+				<p>3</p>
+			</div>
+			<!-- 给<p>3</p> 加了父级元素div并设置BFC，可使其边距不重叠-->
+			<p>4</p>
+			<p>5</p>
+	</section>
+	<!-- BFC元素不与float重叠 -->
+	 <section id="layout">
+	 	<style type="text/css">
+	 		#layout{
+	 			background: red;
+
+	 		}
+	 		#layout .left{
+	 			float:left;
+	 			width: 100px;
+	 			height: 100px;
+	 			background: purple;
+	 		}
+	 		#layout .right{
+	 			height: 110px;
+	 			background: blue;
+	 			overflow: hidden;
+	 		}
+	 	</style>
+	 	<div class="left"></div>
+	 	<div class="right"></div>
+	 </section>
+
+      <section id="float">
+      	<style type="text/css">
+      		#float{
+      			background: red;
+      			/*float:left;*/
+      			overflow: auto;
+      		}
+      		#float .float{
+      			float:left;
+      		}
+      	</style>
+      	<div class="float">
+      		I am a float element！
+      	</div>
+      </section>
+</body>
+</html>
